@@ -23,3 +23,5 @@ function aquila_get_theme_instance() {
 }
 
 aquila_get_theme_instance();
+
+echo "hello";
