@@ -9,23 +9,25 @@ use AQUILA_THEME\Inc\Menus;
   // echo "<pre>";
   // print_r( $header_menus );
   // wp_die();
-
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <?php 
     if ( function_exists( 'the_custom_logo' ) ){
-        the_custom_logo( 'Thumbnail size' );
+        the_custom_logo();
     }
   ?>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
+      <?php 
+        if( !empty( $header_menus ) && is_array( $header_menus ) ){
+          foreach( $header_menus as $header_menu ){
+            if ( $header_menu->menu_item_parent ){
+              $menu_instance->get_child_menus( $header_menus, $header_menu->menu_item_parent );
+            }
+
+          }
+        }
+      ?>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
@@ -39,9 +41,6 @@ use AQUILA_THEME\Inc\Menus;
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

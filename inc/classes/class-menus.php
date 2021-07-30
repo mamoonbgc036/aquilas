@@ -30,5 +30,22 @@ class Menus{
 		$menu_id = $locations[ $location ];
 		return ! empty( $menu_id ) ? $menu_id : "";
 	}
+
+	public function get_child_menus( $menu_array , $parent_id ){
+		// echo "<pre>";
+		// print_r($menu_array);
+		// wp_die();
+		$child_menus = [];
+		if ( !empty($menu_array) && is_array( $menu_array ) ){
+			foreach ( $menu_array as $menu ){
+				if( intval($menu->menu_item_parent) === $parent_id ){
+					array_push( $child_menus, $menu );
+				}
+			}
+		}
+		echo "<pre>";
+		print_r( $child_menus );
+		wp_die();
+	}
 }
 ?>
