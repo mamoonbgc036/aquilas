@@ -22,10 +22,12 @@ class Assets{
 
         wp_register_script('main-js', AQUILA_DIR_URI . '/assets/main.js', [], '1.0', true);
         wp_register_script('bootstrap-js', AQUILA_DIR_URI . '/assets/js/bootstrap.min.js', [], false, true);
+        wp_register_script('jquery-js', AQUILA_DIR_URI . '/assets/js/jquery-3.4.1.js', [], false, true);
 
         wp_enqueue_style('stylesheet');
         wp_enqueue_style('bootstrap-css');
-
+       
+        wp_enqueue_script('jquery-js');
         wp_enqueue_script('main-js');
         wp_enqueue_script('bootstrap-js');
 	}

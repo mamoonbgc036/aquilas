@@ -19,29 +19,40 @@ use AQUILA_THEME\Inc\Menus;
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <?php 
-        if( !empty( $header_menus ) && is_array( $header_menus ) ){
-          foreach( $header_menus as $header_menu ){
-            if ( $header_menu->menu_item_parent ){
-              $menu_instance->get_child_menus( $header_menus, $header_menu->menu_item_parent );
-            }
+           if( !empty($header_menus) && is_array($header_menus) ){
+             foreach( $header_menus as $header_menu ){
+               if(!$header_menu->menu_item_parent){
 
-          }
-        }
-      ?>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+                $child_items = $menu_instance->get_child_menus( $header_menus, $header_menu->ID );
+                if ( !empty($child_items) && is_array($child_items) ){
+                  ?>
+                   <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <?= $header_menu->title ?>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                      <?php 
+                        foreach( $child_items as $child ){
+                          ?>
+                           <a class="dropdown-item" href="#"><?= $child->title ?></a>
+                          <?php
+                        }
+                      ?>     
+                    </div>
+                  </li>
+                  <?php
+                }else{
+                  ?>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"><?= $header_menu->title ?></a>
+                  </li>
+                  <?php
+                }
+              }
+             }
+           }
+        ?>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
