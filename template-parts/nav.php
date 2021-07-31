@@ -35,7 +35,7 @@ use AQUILA_THEME\Inc\Menus;
                       <?php 
                         foreach( $child_items as $child ){
                           ?>
-                           <a class="dropdown-item" href="#"><?= $child->title ?></a>
+                           <a class="dropdown-item" href="<?php echo esc_url( $child->url ); ?>"><?php echo esc_html( $child->title ); ?></a>
                           <?php
                         }
                       ?>     
@@ -45,7 +45,7 @@ use AQUILA_THEME\Inc\Menus;
                 }else{
                   ?>
                   <li class="nav-item">
-                    <a class="nav-link" href="#"><?= $header_menu->title ?></a>
+                    <a class="nav-link" href="<?php echo esc_url( $header_menu->url );?>"><?php echo esc_html( $header_menu->title ); ?></a>
                   </li>
                   <?php
                 }
