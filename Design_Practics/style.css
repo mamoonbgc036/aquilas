@@ -1,3 +1,11 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*SIDEBAR*/
+
 #sidebar{
   width: 0px;
   height: 100%;
@@ -26,4 +34,29 @@
   color: #fff;
   font-size: 35px;
   text-decoration: none;
+}
+
+/*HUMBERGUR*/
+
+#meun_line{
+  width: 30px;
+  height: 5px;
+  background: black;
+}
+
+#meun_line::before,
+#meun_line::after{
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 5px;
+  background: #000;
+}
+
+#meun_line::before{
+  transform: translateY(-16px);
+}
+
+#meun_line::after{
+  transform: translateY(16px);
 }
